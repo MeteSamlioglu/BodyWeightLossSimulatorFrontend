@@ -1,0 +1,213 @@
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-title {
+  margin-top: 20px;
+  font-size: 48px; /* Increased font size for the header */
+}
+
+.controls {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+  justify-content: center;
+  position: relative; /* Added for absolute positioning of BMI and Advanced sections */
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.image-container {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  border: 2px solid #61dafb;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.uploaded-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+  position: absolute;
+  top: 0; /* Align with top of the content */
+  left: -200px; /* Adjust position to left of the left rectangle */
+}
+
+.toggle-button, .new-button, .calculate-button, .submit-button, .show-all-button, .reset-button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+.file-input {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent; /* Make background transparent */
+  color: white; /* Make text white */
+}
+
+.toggle-button.active, .new-button.active {
+  background-color: #ff5733;
+}
+
+.bmi-section, .advanced-section {
+  position: absolute;
+  left: -350px; /* Position to the left of the left rectangle */
+  top: 100px; /* Adjust the top position to prevent overlap */
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bmi-form input {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.bmi-result {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.bmi-table {
+  margin-top: 20px;
+  max-width: 800px;
+}
+
+.bmi-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.bmi-table th, .bmi-table td {
+  border: 1px solid #61dafb;
+  padding: 5px;
+  text-align: center;
+}
+
+.bmi-table th {
+  background-color: #61dafb;
+  color: white;
+}
+
+.bmi-table td {
+  background-color: #f5f5f5;
+  color: #282c34;
+}
+
+.bmi-table button {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 3px;
+  color: white;
+}
+
+.right-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrollable-container {
+  display: flex;
+  overflow-x: auto;
+  width: 850px; /* Fixed width for the scrollable section */
+  height: 620px; /* Fixed height for the scrollable section */
+  border: 2px solid #61dafb;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+}
+
+.scrollable-container .image-container {
+  flex-shrink: 0;
+  width: 400px;
+  height: 600px;
+  margin-right: 20px;
+}
+
+.advanced-section .input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.advanced-section label {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: white;
+}
+
+.advanced-section input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.advanced-section .submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
