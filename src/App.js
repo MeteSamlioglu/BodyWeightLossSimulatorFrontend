@@ -525,7 +525,7 @@ function App() {
     formData.append('image', imageBlob, 'resized_image.png');
 
     try {
-      const response = await fetch('http://20.50.198.244:8080/BodyWeightLoss', {
+      const response = await fetch('https://20.50.198.244:8080/BodyWeightLoss', {
         method: 'POST',
         body: formData,
       });
@@ -682,7 +682,7 @@ function App() {
         formData.append('image', blob, 'uploaded_image.png');
         formData.append('data', JSON.stringify(bodyPartsData));
 
-        const uploadResponse = await fetch('http://20.50.198.244:8080/UploadImage', {
+        const uploadResponse = await fetch('https://20.50.198.244:8080/UploadImage', {
           method: 'POST',
           body: formData,
         });
@@ -732,7 +732,7 @@ function App() {
         formData.append('arms', advancedInputs.arms);
         formData.append('lowerLegs', advancedInputs.lowerLeg);
 
-        const response = await fetch('http://20.50.198.244:8080/AdvancedWeightLoss', {
+        const response = await fetch('https://20.50.198.244:8080/AdvancedWeightLoss', {
           method: 'POST',
           body: formData,
         });
