@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import * as bodyPix from '@tensorflow-models/body-pix';
 import '@tensorflow/tfjs-backend-webgl';
 import './App.css'; // Import the CSS file
@@ -38,47 +38,7 @@ function App() {
     reader.readAsDataURL(file);
   };
 
-  const detect = async (net) => {
-    const image = imageRef.current;
-
-    const imageWidth = image.clientWidth;
-    const imageHeight = image.clientHeight;
-
-    const tempCanvas = document.createElement('canvas');
-    tempCanvas.width = imageWidth;
-    tempCanvas.height = imageHeight;
-    const ctx = tempCanvas.getContext('2d');
-    ctx.drawImage(image, 0, 0, imageWidth, imageHeight);
-
-    tempCanvas.toBlob(async (blob) => {
-      const person = await net.segmentPersonParts(tempCanvas);
-      console.log(person);
-
-      const bodyPartsData = {
-        score: person.allPoses[0].score,
-        keypoints: person.allPoses[0].keypoints.reduce((acc, keypoint) => {
-          acc[keypoint.part] = {
-            position: keypoint.position,
-            score: keypoint.score
-          };
-          return acc;
-        }, {})
-      };
-
-      setBodyPartsData(bodyPartsData);
-      postBodyPartsData(bodyPartsData, blob);
-    }, 'image/png');
-  };
-
-  const runBodysegment = async () => {
-    if (imageRef.current) {
-      const net = await bodyPix.load();
-      console.log("BodyPix model loaded.");
-      detect(net);
-    }
-  };
-
-  const postBodyPartsData = async (bodyPartsData, imageBlob) => {
+  const postBodyPartsData = useCallback(async (bodyPartsData, imageBlob) => {
     const formData = new FormData();
     formData.append('data', JSON.stringify(bodyPartsData));
     formData.append('image', imageBlob, 'resized_image.png');
@@ -100,7 +60,44 @@ function App() {
     } catch (error) {
       console.error("Error sending data:", error);
     }
-  };
+  }, []);
+
+  const runBodysegment = useCallback(async () => {
+    if (imageRef.current) {
+      const net = await bodyPix.load();
+      console.log("BodyPix model loaded.");
+
+      const image = imageRef.current;
+
+      const imageWidth = image.clientWidth;
+      const imageHeight = image.clientHeight;
+
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = imageWidth;
+      tempCanvas.height = imageHeight;
+      const ctx = tempCanvas.getContext('2d');
+      ctx.drawImage(image, 0, 0, imageWidth, imageHeight);
+
+      tempCanvas.toBlob(async (blob) => {
+        const person = await net.segmentPersonParts(tempCanvas);
+        console.log(person);
+
+        const bodyPartsData = {
+          score: person.allPoses[0].score,
+          keypoints: person.allPoses[0].keypoints.reduce((acc, keypoint) => {
+            acc[keypoint.part] = {
+              position: keypoint.position,
+              score: keypoint.score
+            };
+            return acc;
+          }, {})
+        };
+
+        setBodyPartsData(bodyPartsData);
+        postBodyPartsData(bodyPartsData, blob);
+      }, 'image/png');
+    }
+  }, [postBodyPartsData]);
 
   const handleButtonClick = (button) => {
     setActiveButton((prevActiveButton) => (prevActiveButton === button ? null : button));
@@ -196,7 +193,7 @@ function App() {
 
         const formData = new FormData();
         formData.append('month', month);
-        // formData.append('image', blob, 'uploaded_image.png');
+        formData.append('image', blob, 'uploaded_image.png');
         formData.append('data', JSON.stringify(bodyPartsData));
 
         const uploadResponse = await fetch("http://localhost:5000/UploadImage", {
@@ -270,7 +267,7 @@ function App() {
     if (imageURL) {
       runBodysegment();
     }
-  }, [imageURL]);
+  }, [imageURL, runBodysegment]); // Added 'runBodysegment' to dependencies
 
   const handleReset = () => {
     if (imageURL) {
@@ -452,7 +449,7 @@ function App() {
             <div className="scrollable-container">
               {returnedImages.map((url, index) => (
                 <div className="image-container" key={index}>
-                  <img src={url} alt={`Returned Image ${index}`} className="uploaded-image" />
+                  <img src={url} alt={`Result ${index}`} className="uploaded-image" />
                   <div className="image-label">{getImageLabel(index)}</div>
                 </div>
               ))}
@@ -502,6 +499,7 @@ function App() {
 }
 
 export default App;
+
 
 
 // import React, { useRef, useState, useEffect, useCallback } from 'react';
