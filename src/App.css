@@ -1,4 +1,4 @@
-/* Existing CSS remains the same */
+/* Genel uygulama stilleri */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -12,23 +12,26 @@
 
 .App-title {
   margin-top: 20px;
-  font-size: 48px; /* Increased font size for the header */
+  font-size: 48px;
 }
 
+/* Kontrollerin stili */
 .controls {
   display: flex;
   margin-top: 20px;
   justify-content: center;
 }
 
+/* İçerik düzeni */
 .content {
   display: flex;
   align-items: flex-start;
   margin-top: 20px;
   justify-content: center;
-  position: relative; /* Added for absolute positioning of BMI and Advanced sections */
+  position: relative;
 }
 
+/* Sol bölüm (yüklenen görüntü ve formlar) */
 .left-section {
   display: flex;
   flex-direction: column;
@@ -36,22 +39,24 @@
   margin-right: 20px;
 }
 
+/* Görüntü kapsayıcısı */
 .image-container {
   position: relative;
   width: 400px;
-  height: 620px; /* Increased height to accommodate the label */
+  height: 620px;
   border: 2px solid #61dafb;
   border-radius: 10px;
   padding: 10px;
   background-color: white;
   overflow: hidden;
   display: flex;
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0 10px;
 }
 
+/* Yüklenen görüntü */
 .uploaded-image {
   max-width: 100%;
   max-height: 100%;
@@ -59,24 +64,27 @@
   display: block;
 }
 
+/* Görüntü altındaki metin (ör. "Original", "1st") */
 .image-label {
   text-align: center;
   margin-top: 5px;
-  font-size: 20px; /* Increased font size */
+  font-size: 20px;
   color: #282c34;
-  font-weight: bold; /* Make text bold */
+  font-weight: bold;
 }
 
+/* Buton grubu */
 .button-group {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+  flex-wrap: wrap;
   position: absolute;
-  top: 0; /* Align with top of the content */
-  left: -200px; /* Adjust position to left of the left rectangle */
+  top: 0;
+  left: -200px;
 }
 
+/* Butonların genel stili */
 .toggle-button,
 .new-button,
 .calculate-button,
@@ -93,32 +101,36 @@
   color: white;
 }
 
+/* Dosya yükleme inputu */
 .file-input {
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   border: none;
-  background-color: transparent; /* Make background transparent */
-  color: white; /* Make text white */
+  background-color: transparent;
+  color: white;
 }
 
+/* Aktif butonların stili */
 .toggle-button.active,
 .new-button.active {
   background-color: #ff5733;
 }
 
+/* BMI ve Advanced bölümleri */
 .bmi-section,
 .advanced-section {
   position: absolute;
-  left: -350px; /* Position to the left of the left rectangle */
-  top: 100px; /* Adjust the top position to prevent overlap */
+  left: -350px;
+  top: 100px;
   background-color: #333;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* BMI formu */
 .bmi-form {
   display: flex;
   flex-direction: column;
@@ -133,11 +145,13 @@
   border-radius: 5px;
 }
 
+/* BMI sonucu */
 .bmi-result {
   margin-top: 20px;
   font-size: 18px;
 }
 
+/* BMI tablosu */
 .bmi-table {
   margin-top: 20px;
   max-width: 800px;
@@ -176,31 +190,36 @@
   color: white;
 }
 
+/* Sağ bölüm (görüntülerin gösterildiği kapsayıcı) */
 .right-section {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* İçeriği sola yasladık */
 }
 
+/* Kaydırılabilir kapsayıcı */
 .scrollable-container {
   display: flex;
   overflow-x: auto;
-  width: 850px; /* Fixed width for the scrollable section */
-  height: 640px; /* Adjusted height to accommodate labels */
+  width: 1200px; /* Genişliği sabit bir değer yaptık */
+  height: 640px;
   border: 2px solid #61dafb;
   border-radius: 10px;
   background-color: white;
   padding: 10px;
+  flex-wrap: nowrap; /* Görüntülerin tek satırda kalmasını sağlar */
 }
 
+/* Görüntü kapsayıcıları */
 .scrollable-container .image-container {
   flex-shrink: 0;
   width: 400px;
-  height: 620px; /* Match the height of the individual image containers */
+  height: 620px;
   margin-right: 20px;
 }
 
+/* Advanced bölümündeki input grupları */
 .advanced-section .input-group {
   display: flex;
   flex-direction: column;
