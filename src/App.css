@@ -1,3 +1,4 @@
+/* Existing CSS remains the same */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -38,13 +39,14 @@
 .image-container {
   position: relative;
   width: 400px;
-  height: 600px;
+  height: 620px; /* Increased height to accommodate the label */
   border: 2px solid #61dafb;
   border-radius: 10px;
   padding: 10px;
   background-color: white;
   overflow: hidden;
   display: flex;
+  flex-direction: column; /* Stack items vertically */
   align-items: center;
   justify-content: center;
   margin: 0 10px;
@@ -57,6 +59,14 @@
   display: block;
 }
 
+.image-label {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 20px; /* Increased font size */
+  color: #282c34;
+  font-weight: bold; /* Make text bold */
+}
+
 .button-group {
   display: flex;
   justify-content: center;
@@ -67,7 +77,12 @@
   left: -200px; /* Adjust position to left of the left rectangle */
 }
 
-.toggle-button, .new-button, .calculate-button, .submit-button, .show-all-button, .reset-button {
+.toggle-button,
+.new-button,
+.calculate-button,
+.submit-button,
+.show-all-button,
+.reset-button {
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
@@ -88,11 +103,13 @@
   color: white; /* Make text white */
 }
 
-.toggle-button.active, .new-button.active {
+.toggle-button.active,
+.new-button.active {
   background-color: #ff5733;
 }
 
-.bmi-section, .advanced-section {
+.bmi-section,
+.advanced-section {
   position: absolute;
   left: -350px; /* Position to the left of the left rectangle */
   top: 100px; /* Adjust the top position to prevent overlap */
@@ -132,7 +149,8 @@
   margin-top: 10px;
 }
 
-.bmi-table th, .bmi-table td {
+.bmi-table th,
+.bmi-table td {
   border: 1px solid #61dafb;
   padding: 5px;
   text-align: center;
@@ -169,7 +187,7 @@
   display: flex;
   overflow-x: auto;
   width: 850px; /* Fixed width for the scrollable section */
-  height: 620px; /* Fixed height for the scrollable section */
+  height: 640px; /* Adjusted height to accommodate labels */
   border: 2px solid #61dafb;
   border-radius: 10px;
   background-color: white;
@@ -179,7 +197,7 @@
 .scrollable-container .image-container {
   flex-shrink: 0;
   width: 400px;
-  height: 600px;
+  height: 620px; /* Match the height of the individual image containers */
   margin-right: 20px;
 }
 
